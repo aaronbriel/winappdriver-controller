@@ -14,7 +14,7 @@ export const startWinAppDriver = (options?: any) => {
         port = options.port !== undefined ? options.port : '4723',
         shutdown = options.shutdown !== undefined ? options.shutdown : true,
         logDir = options.logDir !== undefined ? options.logDir : 'logs',
-        command = wadPath + 'WinAppDriver.exe';// + ' ' + host + ' ' + port;
+        command = wadPath + 'WinAppDriver.exe';// + ' ' + host + ' ' + port; //'start cmd.exe ' + 
 
     // port += '/wd/hub';
 
@@ -101,7 +101,7 @@ export const statusCheck = (child: any, host: string, port: string, maxRetries=3
                 retries = 0;
             } else {
                 setTimeout(function () {
-                    statusCheck(host, port, child);
+                    statusCheck(child, host, port);
                 }, 1000)
             }
         });

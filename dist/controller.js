@@ -6,7 +6,7 @@ fs = require('fs'), path = require('path'),
 shell = require('shelljs'), retries = 0;
 exports.startWinAppDriver = (options) => {
     options = options || {};
-    let wadPath = options.path !== undefined ? options.path : 'C:\\Program Files (x86)\\Windows Application Driver\\', host = options.host !== undefined ? options.host : '127.0.0.1', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', command = wadPath + 'WinAppDriver.exe'; // + ' ' + host + ' ' + port;
+    let wadPath = options.path !== undefined ? options.path : 'C:\\Program Files (x86)\\Windows Application Driver\\', host = options.host !== undefined ? options.host : '127.0.0.1', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', command = wadPath + 'WinAppDriver.exe'; // + ' ' + host + ' ' + port; //'start cmd.exe ' + 
     // port += '/wd/hub';
     if (shutdown)
         exports.stopWinAppDriver({ port: port });
@@ -77,7 +77,7 @@ exports.statusCheck = (child, host, port, maxRetries = 30) => {
         }
         else {
             setTimeout(function () {
-                exports.statusCheck(host, port, child);
+                exports.statusCheck(child, host, port);
             }, 1000);
         }
     });
