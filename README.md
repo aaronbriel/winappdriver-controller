@@ -12,7 +12,7 @@ Starts and stops WinAppDriver in the background programmatically.
     port:'4724'
   });
 
-  //or with default host:localhost, port:4723
+  //or with default host:127.0.0.1, port:4723
   wadController.startWinAppDriver();
 
   //shutdown with options
