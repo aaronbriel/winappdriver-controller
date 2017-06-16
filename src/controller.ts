@@ -133,7 +133,7 @@ export const stopWinAppDriver = () => { //options?:any
     //     console.log('WinAppDriver is shutdown, err caught.');
     // }
     // shell.exec("taskkill /F /IM WinAppDriver.exe"); //WORKS BUT LEAVES CMD WINDOW OPEN
-    shell.exec("taskkill /F /IM cmd.exe /T");
+    shell.exec('taskkill /F /IM cmd.exe /FI "windowtitle eq C:\\WINDOWS\\system32\\cmd.exe - WinAppDriver.exe" /T');
 
     // options = options || {};
     //
