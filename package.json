@@ -28,14 +28,9 @@
     "url": "git://github.com/aaronbriel/winappdriver-controller.git"
   },
   "dependencies": {
-    "path": "0.12.7",
     "fs": "0.0.1-security",
     "shelljs": "0.7.7",
     "child_process": "1.0.2",
-    "cross-spawn": "5.1.0",
-    "node-cmd": "3.0.0",
-    "bluebird": "3.5.0",
-    "http": "0.0.0",
     "yargs": "^8.0.1"
   },
   "devDependencies": {
