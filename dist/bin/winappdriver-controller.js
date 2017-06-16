@@ -48,5 +48,5 @@ const args = yargs
 if (args.start !== undefined)
     controller_1.startWinAppDriver({ host: args.h, port: args.p, shutdown: args.s, logDir: args.l });
 if (args.stop !== undefined)
-    controller_1.stopWinAppDriver({ port: args.p });
+    controller_1.stopWinAppDriver(); //{port:args.p}
 //# sourceMappingURL=winappdriver-controller.js.map

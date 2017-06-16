@@ -49,5 +49,5 @@ if (args.start !== undefined)
     startWinAppDriver({host:args.h, port:args.p, shutdown:args.s, logDir:args.l});
 
 if (args.stop !== undefined)
-    stopWinAppDriver({port:args.p});
+    stopWinAppDriver(); //{port:args.p}
 
