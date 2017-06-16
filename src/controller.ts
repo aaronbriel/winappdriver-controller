@@ -53,7 +53,11 @@ export const statusCheck = (host: string, port: string, maxRetries=30) => { //ch
     }
 };
 
-export const stopWinAppDriver = () => {
+export const stopWinAppDriver = (options: any) => {
+
+    let msg = 'WinAppDriver is shutdown',
+        port = options.port !== undefined ? options.port : '4723';
+
     shell.exec('taskkill /F /IM cmd.exe /FI "windowtitle eq C:\\WINDOWS\\system32\\cmd.exe - WinAppDriver.exe" /T');
     console.log('WinAppDriver is shutdown');
 };
