@@ -5,7 +5,7 @@ exports.startWinAppDriver = (options) => {
     options = options || {};
     let host = options.host !== undefined ? options.host : '127.0.0.1', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', command = 'start cmd.exe /K WinAppDriver.exe ' + host + ' ' + port;
     if (shutdown)
-        exports.stopWinAppDriver();
+        exports.stopWinAppDriver({ host: host, port: port });
     console.log('Starting WinAppDriver...');
     if (!fs.existsSync(logDir))
         fs.mkdirSync(logDir);
@@ -25,7 +25,7 @@ exports.statusCheck = (host, port, maxRetries = 30) => {
         }
         else {
             setTimeout(function () {
-                exports.statusCheck(host, port); //child,
+                exports.statusCheck(host, port);
             }, 1000);
         }
     });
@@ -34,8 +34,11 @@ exports.statusCheck = (host, port, maxRetries = 30) => {
         process.exit(1);
     }
 };
-exports.stopWinAppDriver = () => {
-    shell.exec('taskkill /F /IM cmd.exe /FI "windowtitle eq C:\\WINDOWS\\system32\\cmd.exe - WinAppDriver.exe" /T');
-    console.log('WinAppDriver is shutdown');
+exports.stopWinAppDriver = (options) => {
+    let msg = 'WinAppDriver is shutdown', host = options.host !== undefined ? options.host : '127.0.0.1', port = options.port !== undefined ? options.port : '4723';
+    shell.exec('taskkill /F /IM cmd.exe /FI ' +
+        '"windowtitle eq C:\\WINDOWS\\system32\\cmd.exe - WinAppDriver.exe  ' +
+        host + ' ' + port + '" /T');
+    console.log(msg);
 };
 //# sourceMappingURL=controller.js.map

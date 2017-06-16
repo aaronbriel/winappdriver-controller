@@ -30,24 +30,12 @@ const args = yargs
         type: 'boolean'
     })
     .default('shutdown', true)
-    .option('wdpath', {
-        alias: 'wd',
-        describe: 'wd hub status path (defaults to /wd/hub/status)',
-        type: 'boolean'
-    })
-    .default('wdpath', '/wd/hub/status')
-    .option('logDir', {
-        alias: 'l',
-        describe: 'appium log path (defaults to ./logs)',
-        type: 'string'
-    })
-    .default('logDir', 'logs')
     .help('help', 'displays help')
     .argv;
 
 if (args.start !== undefined)
-    startWinAppDriver({host:args.h, port:args.p, shutdown:args.s, logDir:args.l});
+    startWinAppDriver({ host:args.h, port:args.p, shutdown:args.s, logDir:args.l });
 
 if (args.stop !== undefined)
-    stopWinAppDriver(); //{port:args.p}
+    stopWinAppDriver({ host:args.h, port:args.p });
 

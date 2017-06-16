@@ -14,7 +14,7 @@ export const startWinAppDriver = (options?: any) => {
         command = 'start cmd.exe /K WinAppDriver.exe ' + host + ' ' + port;
 
     if (shutdown)
-        stopWinAppDriver();
+        stopWinAppDriver({ host:host, port:port });
 
     console.log('Starting WinAppDriver...');
 
@@ -26,7 +26,7 @@ export const startWinAppDriver = (options?: any) => {
     statusCheck(host, port);
 };
 
-export const statusCheck = (host: string, port: string, maxRetries=30) => { //child: any,
+export const statusCheck = (host: string, port: string, maxRetries=30) => {
 
     retries += 1;
 
@@ -42,7 +42,7 @@ export const statusCheck = (host: string, port: string, maxRetries=30) => { //ch
                 retries = 0;
             } else {
                 setTimeout(function () {
-                    statusCheck(host, port); //child,
+                    statusCheck(host, port);
                 }, 1000)
             }
         });
@@ -53,11 +53,15 @@ export const statusCheck = (host: string, port: string, maxRetries=30) => { //ch
     }
 };
 
-export const stopWinAppDriver = (options: any) => {
+export const stopWinAppDriver = (options?: any) => {
 
     let msg = 'WinAppDriver is shutdown',
+        host = options.host !== undefined ? options.host : '127.0.0.1',
         port = options.port !== undefined ? options.port : '4723';
 
-    shell.exec('taskkill /F /IM cmd.exe /FI "windowtitle eq C:\\WINDOWS\\system32\\cmd.exe - WinAppDriver.exe" /T');
-    console.log('WinAppDriver is shutdown');
+    shell.exec('taskkill /F /IM cmd.exe /FI ' +
+        '"windowtitle eq C:\\WINDOWS\\system32\\cmd.exe - WinAppDriver.exe  ' +
+        host + ' ' + port + '" /T');
+
+    console.log(msg);
 };

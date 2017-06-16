@@ -1,38 +1,38 @@
-# appium-controller
-Starts and stops appium in the background programmatically. Runs on mac or windows.
+# winappdriver-controller
+Starts and stops WinAppDriver in the background programmatically.
 
 ## Usage
 ### From Node/JS
 
 ```
-  let appiumController = require('appium-controller')
+  let wadController = require('winappdriver-controller')
 
-  //start appium with options
-  appiumController.startAppium({
+  //start WinAppDriver with options
+  wadController.startWinAppDriver({
     port:'4724'
   });
 
   //or with default host:localhost, port:4723
-  appiumController.startAppium();
+  wadController.startWinAppDriver();
 
   //shutdown with options
-  appiumController.stopAppium({
+  wadController.stopWinAppDriver({
     port:'4724'
   });
 
   //or with default port:4723
-  appiumController.stopAppium();
+  wadController.stopWinAppDriver();
 
 ```
 
 ### From CLI
 ```
-  appium-controller --start
-  appium-controller --start -h localhost -p 4724
-  appium-controller --stop
-  appium-controller --stop -p 4724
+  winappdriver-controller --start
+  winappdriver-controller --start -p 4724
+  winappdriver-controller --stop
+  winappdriver-controller --stop -p 4724
 
 ```
 
 
-Run 'appium-controller --help' for full list of options.
+Run 'winappdriver-controller --help' for full list of options.
